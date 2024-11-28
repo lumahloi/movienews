@@ -95,11 +95,12 @@ public class OMDBServlet extends HttpServlet {
         html.append(".movie-item { text-align: center; width: 150px; }");
         html.append(".movie-poster { width: 100%; height: auto; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }");
         html.append(".movie-title { font-size: 14px; margin-top: 10px; color: #333; }");
+        html.append(".history { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background-color: #fff; }");
         html.append("</style>");
         html.append("</head>");
         html.append("<body>");
         html.append("<h1>MovieGlota - Busca de Filmes</h1>");
-        html.append("<form method='get'>");
+        html.append("<form method='get' id='search-form'>");
         html.append("<label for='name'>Digite o nome do filme:</label><br>");
         html.append("<input type='text' id='name' name='name' value='" + (movieName != null ? movieName : "") + "' required>");
         html.append("<button type='submit'>Buscar</button>");
@@ -111,6 +112,32 @@ public class OMDBServlet extends HttpServlet {
             html.append(resultHtml);
             html.append("</div>");
         }
+
+        html.append("<div class='history'>");
+        html.append("<h2>Histórico de Pesquisas:</h2>");
+        html.append("<ul id='search-history'></ul>");
+        html.append("</div>");
+
+        html.append("<script>");
+        html.append("document.getElementById('search-form').addEventListener('submit', function(e) {");
+        html.append("  const nameInput = document.getElementById('name').value;");
+        html.append("  let history = JSON.parse(localStorage.getItem('searchHistory')) || [];");
+        html.append("  if (!history.includes(nameInput)) {");
+        html.append("    history.push(nameInput);");
+        html.append("    localStorage.setItem('searchHistory', JSON.stringify(history));");
+        html.append("  }");
+        html.append("});");
+
+        html.append("window.addEventListener('DOMContentLoaded', function() {");
+        html.append("  const history = JSON.parse(localStorage.getItem('searchHistory')) || [];");
+        html.append("  const historyList = document.getElementById('search-history');");
+        html.append("  history.forEach(function(item) {");
+        html.append("    const li = document.createElement('li');");
+        html.append("    li.textContent = item;");
+        html.append("    historyList.appendChild(li);");
+        html.append("  });");
+        html.append("});");
+        html.append("</script>");
 
         html.append("</body>");
         html.append("</html>");
