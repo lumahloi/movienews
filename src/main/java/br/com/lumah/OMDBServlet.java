@@ -26,7 +26,7 @@ public class OMDBServlet extends HttpServlet {
         String result = null;
 
         if (movieName != null && !movieName.isEmpty()) {
-            String omdbApiUrl = String.format("http://www.omdbapi.com/?t=%s&apikey=%s", movieName, API_KEY);
+            String omdbApiUrl = String.format("http://www.omdbapi.com/?s=%s&apikey=%s", movieName, API_KEY);
 
             try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
                 HttpGet request = new HttpGet(omdbApiUrl);
