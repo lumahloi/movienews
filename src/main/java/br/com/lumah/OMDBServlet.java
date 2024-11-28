@@ -69,8 +69,12 @@ public class OMDBServlet extends HttpServlet {
 
                 // Adiciona cada filme à grade
                 html.append("<div class='movie-item'>");
+                html.append("<a href='/movieglota/details?id=").append(movie.getString("imdbID")).append("'>");
                 html.append("<img src='").append(poster).append("' alt='Poster' class='movie-poster'>");
+                html.append("</a>");
+                html.append("<a href='/movieglota/details?id=").append(movie.getString("imdbID")).append("'>");
                 html.append("<h3 class='movie-title'>").append(title).append("</h3>");
+                html.append("</a>");
                 html.append("</div>");
             }
             html.append("</div>");
