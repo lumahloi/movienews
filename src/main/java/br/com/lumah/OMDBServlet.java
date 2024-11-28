@@ -131,9 +131,14 @@ public class OMDBServlet extends HttpServlet {
         html.append("window.addEventListener('DOMContentLoaded', function() {");
         html.append("  const history = JSON.parse(localStorage.getItem('searchHistory')) || [];");
         html.append("  const historyList = document.getElementById('search-history');");
-        html.append("  history.forEach(function(item) {");
+        html.append("  history.reverse().forEach(function(item) {");
         html.append("    const li = document.createElement('li');");
         html.append("    li.textContent = item;");
+        html.append("    li.style.cursor = 'pointer';;");
+        html.append("    li.addEventListener('click', function() {");
+        html.append("      document.getElementById('name').value = item;");
+        html.append("      document.getElementById('search-form').submit();");
+        html.append("  });");
         html.append("    historyList.appendChild(li);");
         html.append("  });");
         html.append("});");
