@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/omdb")
+@WebServlet("/")
 public class OMDBServlet extends HttpServlet {
 
     private static final Dotenv dotenv = Dotenv.load();
@@ -22,37 +22,62 @@ public class OMDBServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (API_KEY == null || API_KEY.isEmpty()) {
-            resp.getWriter().write("A chave da API não foi configurada. Verifique o arquivo .env.");
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            return;
-        }
-
         String movieName = req.getParameter("name");
+        String result = null;
 
-        if (movieName == null || movieName.isEmpty()) {
-            resp.getWriter().write("Por favor, forneça o nome de um filme como parâmetro 'name'.");
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
+        if (movieName != null && !movieName.isEmpty()) {
+            String omdbApiUrl = String.format("http://www.omdbapi.com/?t=%s&apikey=%s", movieName, API_KEY);
 
-        String omdbApiUrl = String.format("http://www.omdbapi.com/?t=%s&apikey=%s", movieName, API_KEY);
-
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            HttpGet request = new HttpGet(omdbApiUrl);
-            try (CloseableHttpResponse response = httpClient.execute(request)) {
-                if (response.getStatusLine().getStatusCode() == 200) {
-                    String jsonResponse = EntityUtils.toString(response.getEntity());
-                    resp.setContentType("application/json");
-                    resp.getWriter().write(jsonResponse);
-                } else {
-                    resp.getWriter().write("Erro ao consultar a API do OMDB. Verifique o nome do filme ou a chave de API.");
-                    resp.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
+            try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+                HttpGet request = new HttpGet(omdbApiUrl);
+                try (CloseableHttpResponse response = httpClient.execute(request)) {
+                    if (response.getStatusLine().getStatusCode() == 200) {
+                        result = EntityUtils.toString(response.getEntity());
+                    } else {
+                        result = "Erro ao consultar a API do OMDB. Verifique o nome do filme ou a chave de API.";
+                    }
                 }
+            } catch (Exception e) {
+                result = "Erro interno: " + e.getMessage();
             }
-        } catch (Exception e) {
-            resp.getWriter().write("Erro interno: " + e.getMessage());
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
+
+        // Gerar página HTML
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.getWriter().write(buildHtmlPage(movieName, result));
+    }
+
+    private String buildHtmlPage(String movieName, String result) {
+        StringBuilder html = new StringBuilder();
+
+        html.append("<!DOCTYPE html>");
+        html.append("<html>");
+        html.append("<head>");
+        html.append("<title>MovieGlota</title>");
+        html.append("<style>");
+        html.append("body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }");
+        html.append("form { margin-bottom: 20px; }");
+        html.append(".result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }");
+        html.append("</style>");
+        html.append("</head>");
+        html.append("<body>");
+        html.append("<h1>MovieGlota - Busca de Filmes</h1>");
+        html.append("<form method='get'>");
+        html.append("<label for='name'>Digite o nome do filme:</label><br>");
+        html.append("<input type='text' id='name' name='name' value='" + (movieName != null ? movieName : "") + "' required>");
+        html.append("<button type='submit'>Buscar</button>");
+        html.append("</form>");
+
+        if (result != null) {
+            html.append("<div class='result'>");
+            html.append("<h2>Resultado:</h2>");
+            html.append("<pre>").append(result).append("</pre>");
+            html.append("</div>");
+        }
+
+        html.append("</body>");
+        html.append("</html>");
+
+        return html.toString();
     }
 }
