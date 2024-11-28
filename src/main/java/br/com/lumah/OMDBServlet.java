@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet("/")
 public class OMDBServlet extends HttpServlet {
@@ -28,7 +30,9 @@ public class OMDBServlet extends HttpServlet {
         String resultHtml = null;
 
         if (movieName != null && !movieName.isEmpty()) {
-            String omdbApiUrl = String.format("http://www.omdbapi.com/?s=%s&apikey=%s", movieName, API_KEY);
+            // Codifica a string para uso seguro na URL
+            String encodedMovieName = URLEncoder.encode(movieName, StandardCharsets.UTF_8);
+            String omdbApiUrl = String.format("http://www.omdbapi.com/?s=%s&apikey=%s", encodedMovieName, API_KEY);
 
             try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
                 HttpGet request = new HttpGet(omdbApiUrl);
