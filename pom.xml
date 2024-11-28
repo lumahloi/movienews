@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.lumah</groupId>
-    <artifactId>movieglota</artifactId>
+    <artifactId>moviewnews</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>movieglota Maven Webapp</name>
+    <name>movienews Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -45,7 +45,7 @@
     </dependencies>
 
     <build>
-        <finalName>movieglota</finalName>
+        <finalName>movienews</finalName>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -54,7 +54,7 @@
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/movieglota</contextPath>
+                        <contextPath>/movienews</contextPath>
                     </webApp>
                 </configuration>
             </plugin>

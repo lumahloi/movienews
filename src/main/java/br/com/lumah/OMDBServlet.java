@@ -69,10 +69,10 @@ public class OMDBServlet extends HttpServlet {
 
                 // Adiciona cada filme à grade
                 html.append("<div class='movie-item'>");
-                html.append("<a href='/movieglota/details?id=").append(movie.getString("imdbID")).append("'>");
+                html.append("<a href='/movienews/details?id=").append(movie.getString("imdbID")).append("'>");
                 html.append("<img src='").append(poster).append("' alt='Poster' class='movie-poster'>");
                 html.append("</a>");
-                html.append("<a href='/movieglota/details?id=").append(movie.getString("imdbID")).append("'>");
+                html.append("<a href='/movienews/details?id=").append(movie.getString("imdbID")).append("'>");
                 html.append("<h3 class='movie-title'>").append(title).append("</h3>");
                 html.append("</a>");
                 html.append("</div>");
@@ -91,7 +91,7 @@ public class OMDBServlet extends HttpServlet {
         html.append("<!DOCTYPE html>");
         html.append("<html>");
         html.append("<head>");
-        html.append("<title>MovieGlota</title>");
+        html.append("<title>MovieNews</title>");
         html.append("<style>");
         html.append("body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }");
         html.append("form { margin-bottom: 20px; }");
@@ -103,7 +103,7 @@ public class OMDBServlet extends HttpServlet {
         html.append("</style>");
         html.append("</head>");
         html.append("<body>");
-        html.append("<h1>MovieGlota - Busca de Filmes</h1>");
+        html.append("<h1>MovieNews - Busca de Filmes</h1>");
         html.append("<form method='get' id='search-form'>");
         html.append("<label for='name'>Digite o nome do filme:</label><br>");
         html.append("<input type='text' id='name' name='name' value='" + (movieName != null ? movieName : "") + "' required>");

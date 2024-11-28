@@ -110,14 +110,25 @@ public class MovieDetailsServlet extends HttpServlet {
         if (newsJson.has("articles")) {
             JSONArray articles = newsJson.getJSONArray("articles");
             html.append("<h2>Notícias Relacionadas:</h2>");
-            html.append("<ul>");
+            html.append("<div class='news-container'>"); // Contêiner para a grade de cards
+
             for (int i = 0; i < articles.length(); i++) {
                 JSONObject article = articles.getJSONObject(i);
                 String title = article.getString("title");
                 String url = article.getString("url");
-                html.append("<li><a href='").append(url).append("' target='_blank'>").append(title).append("</a></li>");
+                String source = article.getJSONObject("source").getString("name");
+                String description = article.optString("description", "Sem descrição disponível.");
+                String publishedAt = article.optString("publishedAt", "Data desconhecida").substring(0, 10); // Apenas a data
+
+                html.append("<div class='news-card'>");
+                html.append("<h3 class='news-title'><a href='").append(url).append("' target='_blank'>").append(title).append("</a></h3>");
+                html.append("<p class='news-source'>Fonte: ").append(source).append("</p>");
+                html.append("<p class='news-date'>Publicado em: ").append(publishedAt).append("</p>");
+                html.append("<p class='news-description'>").append(description).append("</p>");
+                html.append("</div>");
             }
-            html.append("</ul>");
+
+            html.append("</div>"); // Fechar contêiner
         } else {
             html.append("<p>Nenhuma notícia encontrada.</p>");
         }
@@ -136,6 +147,14 @@ public class MovieDetailsServlet extends HttpServlet {
         html.append("body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f9f9f9; }");
         html.append("h1, h2 { color: #333; }");
         html.append("p { font-size: 14px; line-height: 1.6; }");
+        html.append(".news-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }");
+        html.append(".news-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 15px; width: 300px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }");
+        html.append(".news-card h3 { margin-top: 0; font-size: 16px; color: #0073e6; }");
+        html.append(".news-card p { margin: 5px 0; color: #555; }");
+        html.append(".news-card .news-title a { text-decoration: none; color: #0073e6; }");
+        html.append(".news-card .news-title a:hover { text-decoration: underline; }");
+        html.append(".news-card .news-source { font-weight: bold; }");
+        html.append(".news-card .news-date { font-style: italic; font-size: 12px; }");
         html.append("</style>");
         html.append("</head>");
         html.append("<body>");
