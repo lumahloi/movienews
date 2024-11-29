@@ -26,7 +26,7 @@ O MovieNews oferece uma plataforma única para pesquisar filmes e acessar notíc
 **Frameworks:** Maven, Jetty, Apache
 ## Demonstração
 
-![](https://i.imgur.com/6K70xDn.gif)
+![](https://i.imgur.com/wkgqSHR.gif)
 
 
 ## Variáveis de Ambiente
