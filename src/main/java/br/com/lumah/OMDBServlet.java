@@ -29,7 +29,10 @@ public class OMDBServlet extends HttpServlet {
         String movieName = req.getParameter("name");
         String resultHtml = null;
 
-        if (movieName != null && !movieName.isEmpty()) {
+        // Se não houver nome de filme, exibe a mensagem para pesquisar um filme
+        if (movieName == null || movieName.isEmpty()) {
+            resultHtml = "<p>Pesquise por um filme.</p>";
+        } else {
             // Codifica a string para uso seguro na URL
             String encodedMovieName = URLEncoder.encode(movieName, StandardCharsets.UTF_8);
             String omdbApiUrl = String.format("http://www.omdbapi.com/?s=%s&apikey=%s", encodedMovieName, API_KEY);
@@ -53,6 +56,7 @@ public class OMDBServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         resp.getWriter().write(buildHtmlPage(movieName, resultHtml));
     }
+
 
     private String buildHeader() {
         StringBuilder html = new StringBuilder();
