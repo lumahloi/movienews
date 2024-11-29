@@ -61,6 +61,40 @@ public class MovieDetailsServlet extends HttpServlet {
         resp.getWriter().write(buildHtmlPage(movieHtml, newsHtml));
     }
 
+    private String buildHeader() {
+        StringBuilder html = new StringBuilder();
+
+        html.append("<header style='background: #333; color: #fff; padding: 10px 20px; display: flex; align-items: center;'>");
+        html.append("<h1 style='margin: 0; flex: 1;'><a href='/movienews/' style='color: #fff; text-decoration: none;'>MovieGlota</a></h1>");
+        html.append("<form id='search-form' method='get' style='flex: 2; position: relative;'>");
+        html.append("<input type='text' id='name' name='name' placeholder='Digite o nome do filme...' style='width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;'>");
+        html.append("<div id='search-history' style='display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 10;'></div>");
+        html.append("</form>");
+        html.append("</header>");
+
+        // Adicionando script JavaScript para comportamento do histórico
+        html.append("<script>");
+        html.append("document.getElementById('name').addEventListener('focus', function() {");
+        html.append("  const history = JSON.parse(localStorage.getItem('searchHistory')) || [];");
+        html.append("  const historyDiv = document.getElementById('search-history');");
+        html.append("  historyDiv.innerHTML = history.map(item => `<div style='padding: 5px; cursor: pointer;'>${item}</div>`).join('');");
+        html.append("  historyDiv.style.display = history.length ? 'block' : 'none';");
+        html.append("  Array.from(historyDiv.children).forEach(child => {");
+        html.append("    child.addEventListener('click', function() {");
+        html.append("      document.getElementById('name').value = this.textContent;");
+        html.append("      document.getElementById('search-form').submit();");
+        html.append("    });");
+        html.append("  });");
+        html.append("});");
+        html.append("document.getElementById('name').addEventListener('blur', function() {");
+        html.append("  setTimeout(() => { document.getElementById('search-history').style.display = 'none'; }, 200);");
+        html.append("});");
+        html.append("</script>");
+
+        return html.toString();
+    }
+
+
     private String fetchNewsForMovie(String movieTitle) {
         String newsApiUrl = String.format("https://newsapi.org/v2/everything?q=%s&apiKey=%s",
                 movieTitle.replace(" ", "%20"), NEWS_API_KEY);
@@ -158,6 +192,7 @@ public class MovieDetailsServlet extends HttpServlet {
         html.append("</style>");
         html.append("</head>");
         html.append("<body>");
+        html.append(buildHeader());
         html.append(movieHtml);
         html.append(newsHtml);
         html.append("</body>");
