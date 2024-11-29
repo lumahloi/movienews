@@ -65,7 +65,7 @@ public class MovieDetailsServlet extends HttpServlet {
         StringBuilder html = new StringBuilder();
 
         html.append("<header style='background: #333; color: #fff; padding: 10px 20px; display: flex; align-items: center;'>");
-        html.append("<h1 style='margin: 0; flex: 1;'><a href='/movienews/' style='color: #fff; text-decoration: none;'>MovieGlota</a></h1>");
+        html.append("<h1 style='margin: 0; flex: 1;'><a href='/movienews/' style='color: #fff; text-decoration: none;'>MovieNews</a></h1>");
         html.append("<form id='search-form' method='get' style='flex: 2; position: relative;'>");
         html.append("<input type='text' id='name' name='name' placeholder='Digite o nome do filme...' style='width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;'>");
         html.append("<div id='search-history' style='display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; z-index: 10;'></div>");
@@ -77,7 +77,7 @@ public class MovieDetailsServlet extends HttpServlet {
         html.append("document.getElementById('name').addEventListener('focus', function() {");
         html.append("  const history = JSON.parse(localStorage.getItem('searchHistory')) || [];");
         html.append("  const historyDiv = document.getElementById('search-history');");
-        html.append("  historyDiv.innerHTML = history.map(item => `<div style='padding: 5px; cursor: pointer;'>${item}</div>`).join('');");
+        html.append("  historyDiv.innerHTML = history.map(item => `<div style='padding: 5px; cursor: pointer; color: #000'>${item}</div>`).join('');");
         html.append("  historyDiv.style.display = history.length ? 'block' : 'none';");
         html.append("  Array.from(historyDiv.children).forEach(child => {");
         html.append("    child.addEventListener('click', function() {");
@@ -93,7 +93,6 @@ public class MovieDetailsServlet extends HttpServlet {
 
         return html.toString();
     }
-
 
     private String fetchNewsForMovie(String movieTitle) {
         String newsApiUrl = String.format("https://newsapi.org/v2/everything?q=%s&apiKey=%s",
@@ -123,13 +122,17 @@ public class MovieDetailsServlet extends HttpServlet {
 
         if (movie.has("Title")) {
             html.append("<h1>").append(movie.getString("Title")).append("</h1>");
+            html.append("<div id='info-container'>");
             html.append("<img src='").append(movie.getString("Poster")).append("' alt='Poster' style='max-width:200px;'><br>");
+            html.append("<div>");
             html.append("<p><strong>Ano:</strong> ").append(movie.getString("Year")).append("</p>");
             html.append("<p><strong>Diretor:</strong> ").append(movie.optString("Director", "N/A")).append("</p>");
             html.append("<p><strong>Elenco:</strong> ").append(movie.optString("Actors", "N/A")).append("</p>");
             html.append("<p><strong>Gênero:</strong> ").append(movie.optString("Genre", "N/A")).append("</p>");
             html.append("<p><strong>Sinopse:</strong> ").append(movie.optString("Plot", "N/A")).append("</p>");
             html.append("<p><strong>IMDb Avaliação:</strong> ").append(movie.optString("imdbRating", "N/A")).append("</p>");
+            html.append("</div>");
+            html.append("</div>");
         } else {
             html.append("<p>Detalhes do filme não encontrados.</p>");
         }
@@ -178,7 +181,7 @@ public class MovieDetailsServlet extends HttpServlet {
         html.append("<head>");
         html.append("<title>Detalhes do Filme</title>");
         html.append("<style>");
-        html.append("body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f9f9f9; }");
+        html.append("body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }");
         html.append("h1, h2 { color: #333; }");
         html.append("p { font-size: 14px; line-height: 1.6; }");
         html.append(".news-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }");
@@ -189,10 +192,12 @@ public class MovieDetailsServlet extends HttpServlet {
         html.append(".news-card .news-title a:hover { text-decoration: underline; }");
         html.append(".news-card .news-source { font-weight: bold; }");
         html.append(".news-card .news-date { font-style: italic; font-size: 12px; }");
+        html.append("#info-container { display: flex; }");
+        html.append("img { margin-right: 30px; }");
         html.append("</style>");
         html.append("</head>");
-        html.append("<body>");
         html.append(buildHeader());
+        html.append("<body>");
         html.append(movieHtml);
         html.append(newsHtml);
         html.append("</body>");
