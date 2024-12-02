@@ -1,74 +1,25 @@
-
 # MovieNews
+[![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#)
+[![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#)
+[![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#)
+[![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?logo=intellij-idea&logoColor=white)](#)
 
-Encontrar informações sobre filmes e notícias relacionadas é difícil, com dados espalhados em várias plataformas, o que torna a busca demorada e frustrante.
+O **MovieNews** é meu projeto da disciplina **Programação Orientada a Objetos Avançada** realizado como requisito parcial para obtenção de nota. Foi desenvolvido uma aplicação Java voltada para a Web que utiliza 2 **APIs**: **OMDBApi** e **NewsApi**, junto com 2 **Padrões de Projeto**: **Singleton** e **Strategy**.
 
-O MovieNews oferece uma plataforma única para pesquisar filmes e acessar notícias atualizadas, melhorando a experiência do usuário com uma interface intuitiva e centralizada.
+## Imagens
+<img src="https://i.imgur.com/r0oCBgM.jpeg"><img src="https://i.imgur.com/W7SAZro.jpeg">
 
-
+## Tecnologias utilizadas
+- **Frontend**: HTML, CSS
+- **Backend**: Java
+- **Frameworks**: Apache Tomcat, Jetty, Maven
+- **Outros**: GitHub, IntelliJ IDEA
 
 ## Funcionalidades
+- Pesquisa e exibição de filmes por título;
+- Exibição de detalhes e notícias do filme escolhido;
+- Exibição do histórico de pesquisa;
+- Favoritar filmes.
 
-
-- Pesquisa de filmes
-- Exibir detalhes do filme: exibir informações detalhadas detalhadas sobre os filmes, como sinopse, gênero, título, pôster
-- Exibição de Notícias: apresentar notícias relacionadas ao filme
-- Histórico de pesquisa de filmes
-- Favoritos: adicionar filme aos favoritos
-## Stack utilizada
-
-**Front-end:** HTML e CSS
-
-**Back-end:** Java
-
-**IDE:** IntelliJ 
-
-**Frameworks:** Maven, Jetty, Apache
-## Demonstração
-
-Copie e cole este link em seu navegador: https://i.imgur.com/wkgqSHR.mp4
-
-
-## Variáveis de Ambiente
-
-Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env:
-
-`OMDB_API_KEY = [SUA CHAVE]`
-
-`NEWS_API_KEY= [SUA CHAVE]`
-
-## Rodando localmente
-
-Clone o projeto
-
-```bash
-  git clone https://github.com/lumahloi/movienews.git
-```
-
-Entre no diretório do projeto
-
-```bash
-  cd movieglota
-```
-
-Instale as dependências
-
-```bash
-  mvn install
-```
-
-Inicie o servidor
-
-```bash
-  mvn jetty:run
-```
-
-
-## Aprendizados
-
-Foi minha primeira vez utilizando o Intellij e simplesmente adorei a IDE no que concerna Java! Recomendo demais, tem licença educacional.
-Além disso, consolidei meus conhecimentos em Java para a Web, criando servlets e manipulando APIs.
-Também aproveitei para implementar padrões de projeto, utilizando Singleton e Strategy. Uma lição valiosa para Java que adquiri neste projeto é: não ficar mexendo nas versões das importações e adaptar as dependências às versões!
-## Feedback
-
-Se você tiver algum feedback ou dúvida sobre o projeto, não hesite em entrar em contato! :D
+## Contato
+Caso você tenha alguma dúvida ou feedback, não hesite em entrar em contato! :D <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dc6fef0c-9d21-42dd-a18b-9573936309d1/da5palh-65273507-8a15-454d-ae2e-0bbb970f8a16.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RjNmZlZjBjLTlkMjEtNDJkZC1hMThiLTk1NzM5MzYzMDlkMVwvZGE1cGFsaC02NTI3MzUwNy04YTE1LTQ1NGQtYWUyZS0wYmJiOTcwZjhhMTYuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TrXzBGCo6VqptVKxxVoJSuRLqrPXOQgVZdRYwfCyybc"> [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=fff)](https://www.linkedin.com/in/lumah-pereira/)
