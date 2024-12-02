@@ -7,7 +7,7 @@
 O **MovieNews** é meu projeto da disciplina **Programação Orientada a Objetos Avançada** realizado como requisito parcial para obtenção de nota. Foi desenvolvido uma aplicação Java voltada para a Web que utiliza 2 **APIs**: **OMDBApi** e **NewsApi**, junto com 2 **Padrões de Projeto**: **Singleton** e **Strategy**.
 
 ## Imagens
-<img src="https://i.imgur.com/r0oCBgM.jpeg"><img src="https://i.imgur.com/W7SAZro.jpeg">
+<img src="https://i.imgur.com/Fay7ZIe.jpeg"><img src="https://i.imgur.com/1Ime3nh.jpeg">
 
 ## Tecnologias utilizadas
 - **Frontend**: HTML, CSS
