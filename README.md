@@ -2,18 +2,11 @@
 [![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#)
 [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#)
 [![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#)
-[![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?logo=intellij-idea&logoColor=white)](#)
 
 O **MovieNews** é meu projeto da disciplina **Programação Orientada a Objetos Avançada** realizado como requisito parcial para obtenção de nota. Foi desenvolvido uma aplicação Java voltada para a Web que utiliza 2 **APIs**: **OMDBApi** e **NewsApi**, junto com 2 **Padrões de Projeto**: **Singleton** e **Strategy**.
 
 ## Imagens
 <img src="https://i.imgur.com/Fay7ZIe.jpeg"><img src="https://i.imgur.com/1Ime3nh.jpeg">
-
-## Tecnologias utilizadas
-- **Frontend**: HTML, CSS
-- **Backend**: Java
-- **Frameworks**: Apache Tomcat, Jetty, Maven
-- **Outros**: GitHub, IntelliJ IDEA
 
 ## Funcionalidades
 - Pesquisa e exibição de filmes por título;
