@@ -3,16 +3,36 @@
 [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#)
 [![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#)
 
-O **MovieNews** é meu projeto da disciplina **Programação Orientada a Objetos Avançada** realizado como requisito parcial para obtenção de nota. Foi desenvolvido uma aplicação Java voltada para a Web que utiliza 2 **APIs**: **OMDBApi** e **NewsApi**, junto com 2 **Padrões de Projeto**: **Singleton** e **Strategy**.
+Website which searches for movies and return its related news using the APIs **OMDBApi** and **NewsApi**.
 
-## Imagens
+## Functionalities
+- Search and display of films by title;
+- Display of details and news of the selected film;
+- Display of search history;
+- Favorite films.
+
+## Screenshots
 <img src="https://i.imgur.com/Fay7ZIe.jpeg"><img src="https://i.imgur.com/1Ime3nh.jpeg">
 
-## Funcionalidades
-- Pesquisa e exibição de filmes por título;
-- Exibição de detalhes e notícias do filme escolhido;
-- Exibição do histórico de pesquisa;
-- Favoritar filmes.
+## Pre-requisites
+- **Java JDK 8**: check installation at the [official website](https://maven.apache.org/install.html)
+- **Apache Maven 3.6+**: check installation at the [official website](https://www.oracle.com/br/java/technologies/javase/javase8-archive-downloads.html)
 
-## Contato
-Caso você tenha alguma dúvida ou feedback, não hesite em entrar em contato! :D <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dc6fef0c-9d21-42dd-a18b-9573936309d1/da5palh-65273507-8a15-454d-ae2e-0bbb970f8a16.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2RjNmZlZjBjLTlkMjEtNDJkZC1hMThiLTk1NzM5MzYzMDlkMVwvZGE1cGFsaC02NTI3MzUwNy04YTE1LTQ1NGQtYWUyZS0wYmJiOTcwZjhhMTYuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TrXzBGCo6VqptVKxxVoJSuRLqrPXOQgVZdRYwfCyybc"> [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=fff)](https://www.linkedin.com/in/lumah-pereira/)
+## Installation
+- **Compile the Maven project**
+```bash
+mvn clean package
+```
+
+- **Run  the Jetty server**
+```bash
+mvn jetty:run
+```
+
+## Author
+<img src="https://github.com/lumahloi.png" width="80" align="left"/>
+
+***Lumah Pereira***
+
+
+[![LinkedIn](https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?logo=linkedin-white&logoColor=fff)](https://www.linkedin.com/in/lumah-pereira) [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://www.github.com/lumahloi) [![Portfolio](https://img.shields.io/badge/Portfolio-D47CBC.svg?logo=vercel&logoColor=white)](https://www.lumah-pereira.vercel.app)
